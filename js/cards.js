@@ -19,49 +19,94 @@ function dnm(canv,x,y,sz,nm,c){
  ctx.font = sz+"px Arial";
  ctx.fillText(Number.isInteger(nm) ? nm:nm.toUpperCase(), x-(sz/2), y+(sz/2));
 }
-function dsh(canv,x,y,sz,s){
- var ctx = canv.getContext("2d");
- if (s=='c' || s=='t') { c=1; }
- if (s=='d' || s=='s') { c=2; }
- if (s==1 || s=='c') {
-  //draw circle
-  ctx.beginPath();
-  ctx.arc(x, y,sz/2, 0, 2 * Math.PI);
-  ctx.fillStyle = c==1 ? "red" : 'black';
-  ctx.fill();
-  ctx.stroke(); 
- }
- if (s==2 || s=='s') {
-  //draw square
-  ctx.beginPath();
-  ctx.rect(x - (sz/2), y - (sz/2),sz,sz);
-  ctx.fillStyle = c==1 ? "red" : 'black';
-  ctx.fill();
-  ctx.stroke();
- }
- if (s==3 || s=='d') {
-  //draw diamond
-  ctx.beginPath();
-  ctx.moveTo(x, y-(sz/2));
-  ctx.lineTo(x - sz/2, y);
-  ctx.lineTo(x, y+(sz/2));
-  ctx.lineTo(x + sz/2, y);
-  ctx.closePath();
-  ctx.fillStyle = c==1 ? "red" : 'black';
-  ctx.fill();
-  ctx.stroke();
- }
- if (s==4 || s=='t') {
-  //draw triangle
-  ctx.beginPath();
-  ctx.moveTo(x, y-(sz/2));
-  ctx.lineTo(x-(sz/2), y+(sz/2));
-  ctx.lineTo(x+(sz/2), y+(sz/2));
-  ctx.closePath();
-  ctx.fillStyle = c==1 ? "red" : 'black';
-  ctx.fill();
-  ctx.stroke();
- }
+
+function dsh(canv, x, y, sz, s) {
+    const ctx = canv.getContext("2d");
+
+    // Colors
+    const yellow = "#F2D000";
+    const green = "#4AA000";
+    const outline = "#000000";
+
+    // Suit → face mapping
+    // c = hearts → smiley
+    // t = clubs → kissy
+    // s = spades → mr yuck
+    // d = diamonds → evil grin
+
+    let fill;
+    if (s === 'c' || s === 1) fill = yellow;      // smiley
+    if (s === 't' || s === 4) fill = yellow;      // kissy
+    if (s === 's' || s === 2) fill = green;       // mr yuck
+    if (s === 'd' || s === 3) fill = green;       // evil grin
+
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = outline;
+    ctx.fillStyle = fill;
+
+    // Head radius
+    const r = Math.max(sz / 2.5, 6);
+
+    // Draw head
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    // Pixel-ish unit
+    const u = Math.max(Math.floor(r / 4), 2);
+
+    // Eyes
+    ctx.fillStyle = outline;
+
+    // Left eye
+    ctx.fillRect(x - 2*u, y - u, u, u);
+
+    // Right eye
+    ctx.fillRect(x + u, y - u, u, u);
+
+    // Reset fill for mouths
+    ctx.fillStyle = outline;
+
+    // Mouths by suit
+    if (s === 'c' || s === 1) {
+        // 😀 Smiley
+        ctx.fillRect(x - 2*u, y + u, 4*u, u);
+    }
+
+    if (s === 't' || s === 4) {
+        // 😘 Kissy face (little puckered mouth)
+        ctx.fillRect(x - u/2, y + u, u, u);
+    }
+
+    if (s === 's' || s === 2) {
+        // Mr. Yuck (flat angry mouth)
+        ctx.fillRect(x - 2*u, y + u, 4*u, u);
+        ctx.fillRect(x - 2*u, y + u, u, u); // left fang
+        ctx.fillRect(x + u, y + u, u, u);   // right fang
+    }
+
+    if (s === 'd' || s === 3) {
+        // Evil grin
+        ctx.fillRect(x - 2*u, y + u, 4*u, u);
+
+// Left fang (triangle)
+    ctx.beginPath();
+    ctx.moveTo(x - 1.5*u, y + 2*u);   // top-left
+    ctx.lineTo(x - 0.5*u, y + 2*u);   // top-right
+    ctx.lineTo(x - u,     y + 5*u);   // bottom point
+    ctx.closePath();
+    ctx.fill();
+
+    // Right fang (triangle)
+    ctx.beginPath();
+    ctx.moveTo(x + 0.5*u, y + 2*u);   // top-left
+    ctx.lineTo(x + 1.5*u, y + 2*u);   // top-right
+    ctx.lineTo(x + u,     y + 5*u);   // bottom point
+    ctx.closePath();
+    ctx.fill();
+
+    }
 }
 
 function dcd(canv,x,y,c='',s=200,co1='lime',co2='green'){
