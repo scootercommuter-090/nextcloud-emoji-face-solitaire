@@ -27,7 +27,7 @@ class PageController extends Controller {
 	 */
 	public function index() {
 		$response = new TemplateResponse('solitaire', 'index');  // templates/index.php
-		$csp = new ContentSecurityPolicy();
+		// $csp = new ContentSecurityPolicy();
 		$csp->allowEvalScript(true);
 		$response->setContentSecurityPolicy($csp);
 
