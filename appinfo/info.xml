@@ -16,7 +16,7 @@ cleaned‑up assets, and a simplified deck renderer.
     <version>1.0.0</version>
     <licence>agpl</licence>
     <author>David</author>
-    <namespace>EmojiFaceSolitaire</namespace>
+    <namespace>SolitaireEmoji</namespace>
 
     <category>games</category>
 
