@@ -1,28 +1,32 @@
 <?xml version="1.0"?>
-<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
+<info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+
     <id>emoji-face-solitaire</id>
     <name>Solitaire (Emoji Face Fork)</name>
-    <summary>Solitaire</summary>
+    <summary>Emoji‑Face Solitaire for Nextcloud</summary>
+
     <description><![CDATA[
-# Solitaire
-A Nextcloud app that lets you play Solitaire.
+A custom fork of the classic Nextcloud Solitaire app, redesigned to use
+emoji‑style face suits (😀 😘 ☣️ 😈) instead of traditional card symbols.
+This fork is optimized for Nextcloud 34+ and includes compatibility fixes,
+cleaned‑up assets, and a simplified deck renderer.
     ]]></description>
-    <version>1.0.1</version>
-    <licence>public</licence>
-    <author mail="colin@derben.ca" homepage="https://derben.ca">DerBen</author>
-    <namespace>Solitaire</namespace>
+
+    <version>1.0.0</version>
+    <licence>agpl</licence>
+    <author>David</author>
+    <namespace>EmojiFaceSolitaire</namespace>
+
     <category>games</category>
-    <website>https://github.com/derbenx/nextcloud-solitaire</website>
-    <bugs>https://github.com/derbenx/nextcloud-solitaire/issues</bugs>
-    <screenshot>https://raw.githubusercontent.com/derbenx/nextcloud-solitaire/master/Solitaire.png</screenshot>
+
+    <website>https://github.com/scootercommuter-090/nextcloud-emoji-face-solitaire</website>
+    <bugs>https://github.com/scootercommuter-090/nextcloud-emoji-face-solitaire/issues</bugs>
+    <repository type="git">https://github.com/scootercommuter-090/nextcloud-emoji-face-solitaire.git</repository>
+
     <dependencies>
-        <nextcloud min-version="25" max-version="35"/>
+        <nextcloud min-version="27" max-version="35" />
+        <php min-version="8.0" />
     </dependencies>
-	    <navigations>
-        <navigation>
-            <name>Solitaire</name>
-            <route>solitaire.page.index</route>
-        </navigation>
-    </navigations>
+
 </info>
