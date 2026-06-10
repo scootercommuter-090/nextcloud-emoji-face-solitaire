@@ -1,5 +1,5 @@
 <?php
-namespace OCA\Solitaire\Controller;
+namespace OCA\SolitaireEmoji\Controller;
 
 use OCP\IRequest;
 use OCP\AppFramework\Http\TemplateResponse;
