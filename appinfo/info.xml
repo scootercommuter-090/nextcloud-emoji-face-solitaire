@@ -2,7 +2,7 @@
 <info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
     <id>emoji-face-solitaire</id>
-    <name>Solitaire</name>
+    <name>Solitaire (Emoji Face Fork)</name>
     <summary>Solitaire</summary>
     <description><![CDATA[
 # Solitaire
